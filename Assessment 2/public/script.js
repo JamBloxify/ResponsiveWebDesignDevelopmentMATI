@@ -1,7 +1,7 @@
 // -- ENTRIES --
 // Display Entries in list
 async function loadEntries() {
-    const res = await fetch('/api/entries');
+    const res = await fetch('entries');
     const data = await res.json();
 
     const list = document.getElementById("logList");
@@ -15,9 +15,10 @@ async function loadEntries() {
     });
 }
 
+// Reference ChatGPT: "How can I connect my MongoDB format to my HTML?"
 // Display content on the main frame
 async function loadEntry(id) {
-    const res = await fetch(`/api/entries/${id}`);
+    const res = await fetch(`entries/${id}`);
     const entry = await res.json();
 
     document.getElementById('entryTitle').textContent = entry.title;
@@ -40,7 +41,7 @@ document.getElementById('navEntries').addEventListener('click', () => {
 // -- PERSONAS --
 // Display Personas in list
 async function loadPersonas() {
-    const res = await fetch('/api/personas');
+    const res = await fetch('personas');
     const data = await res.json();
 
     const list = document.getElementById("logList");
@@ -56,7 +57,7 @@ async function loadPersonas() {
 
 // Display content on the main frame
 async function loadPersona(id) {
-    const res = await fetch(`/api/personas/${id}`);
+    const res = await fetch(`personas/${id}`);
     const persona = await res.json();
 
     document.getElementById('entryTitle').textContent = persona.title;
@@ -79,7 +80,7 @@ document.getElementById('navPersonas').addEventListener('click', () => {
 // -- FACTIONS --
 // Display Factions in list
 async function loadFactions() {
-    const res = await fetch('/api/factions');
+    const res = await fetch('factions');
     const data = await res.json();
 
     const list = document.getElementById("logList");
@@ -95,7 +96,7 @@ async function loadFactions() {
 
 // Display content on the main frame
 async function loadFaction(id) {
-    const res = await fetch(`/api/factions/${id}`);
+    const res = await fetch(`factions/${id}`);
     const faction = await res.json();
 
     document.getElementById('entryTitle').textContent = faction.title;

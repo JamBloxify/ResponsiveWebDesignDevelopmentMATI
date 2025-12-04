@@ -1,0 +1,340 @@
+// Colours
+$primary-red: #ff0000;
+
+// Dark Mode
+$dark-bg: #000000;
+$text-dark-primary: #ffffff;
+$text-dark-secondary: #cccccc;
+$text-dark-tertiary: #888888;  
+$panel-dark-bg: #1a1a1a;
+$panel-dark-detail: #3a3a3a;
+
+// Font sizes
+$font-small: 16px;
+$font-medium: 20px;
+$font-mobile-large: 30px;
+$font-tablet-large: 40px;
+$font-desktop-large: 50px;
+
+// Font styles
+$font-main: Petrona, serif;
+$font-type: Syne Mono, monospace;
+
+/* Base */
+body {
+  background-color: $dark-bg;
+  color: $text-dark-primary;
+  font-family: $font-main;
+  margin: 0;
+}
+
+/* Loading screen (Taken from my last year's assessment*/
+.loadscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    animation: blackscreen 1s linear forwards;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes blackscreen {
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.loader {
+    width: 200px; 
+    height: 200px;
+    animation: loading 1s infinite ease-in-out;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(270deg);
+        pointer-events: none;
+    }
+}
+
+/* Mobile First - Base Styles (<600px) */
+.header {
+    display: flex;
+    background-color: $dark-bg;
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: center; 
+    gap: 10px;
+
+    #logo {
+        width: 100px;
+        height: auto;
+    }
+
+    #subtitle {
+        color: $text-dark-primary;
+        font-size: 30px;
+        font-family: $font-main;
+        font-optical-sizing: auto;
+        font-weight: 100;
+        font-style: normal;
+        margin: 0;
+    }
+}
+
+.container {
+    .nav {
+        background-color: $dark-bg;
+        padding: 10px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1001;
+
+        a {
+            display: inline-block;
+            color: $text-dark-primary;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 20px;
+            transition: color 0.2s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                color: $primary-red;
+            }
+        }
+    }
+
+    .image {
+        text-align: center;
+        margin: 10px;
+
+        #logImage {
+            max-width: 100%;
+            width: 100px;
+            height: auto;
+            border: 5px solid $primary-red;
+            border-radius: 5px;
+        }
+    }
+
+    .logs {
+        background-color: $panel-dark-bg;
+        border: 5px solid $panel-dark-detail;
+        padding: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        position: sticky;
+        top: 40px;
+        z-index: 1000;
+
+        #logTitle {
+            display: block;
+            font-size: $font-medium;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        #logList {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                display: inline-block;
+                flex-shrink: 0;
+                padding: 10px 15px;
+                background-color: $panel-dark-bg;
+                border: 2px solid $primary-red;
+                border-radius: 5px;
+                margin-right: 10px;
+                color: $text-dark-primary;
+                cursor: pointer;
+                transition: background-color 0.2s ease-in-out;
+
+                &:hover {
+                    background-color: $primary-red;
+                }
+            }
+        }
+    }
+
+    .main {
+        text-align: center;
+        padding: 10px;
+
+        #entryTitle {
+            text-align: center;
+            font-family: $font-main;
+            font-size: $font-mobile-large;
+        }
+
+        #entryContent {
+            padding: 20px;
+            text-align: left;
+            font-family: $font-type;
+            font-size: $font-small;
+            overflow-y: auto;
+        }
+
+        #entryImage {
+                width: clamp(100px, 150px, 200px);
+                height: auto;
+                border: 5px solid $primary-red;
+            }
+    }
+}
+
+/* Large Mobile / Tablet (600px - 1039px) */
+@media (min-width: 600px) {
+    .header {
+        padding: 20px;
+        gap: 20px;
+
+        #logo {
+            width: 200px;
+        }
+
+        #subtitle {
+            font-size: 60px;
+        }
+    }
+
+    .container {
+        .nav a {
+            font-size: clamp($font-medium, $font-mobile-large, $font-tablet-large);
+            margin: 0 25px;
+        }
+
+        .logs {
+            #logTitle {
+                font-size: $font-tablet-large;
+            }
+
+                li {
+                    font-size: $font-mobile-large;
+                }
+
+            .image {
+                margin: 20px;
+
+                #logImage {
+                    width: clamp(100px, 200px, 250px);
+                }
+            }
+        }
+
+        .main {
+            background-color: $panel-dark-bg;
+            margin: 50px;
+            border: 5px solid $panel-dark-detail;
+
+            #entryTitle {
+                font-size: $font-tablet-large;
+            }
+
+            #entryContent {
+                padding: 40px;
+                font-size: $font-medium;
+            }
+
+            #entryImage {
+                width: clamp(150px, 250px, 350px);
+            }
+        }
+    }
+}
+
+/* Desktop (>1024px) */
+@media (min-width: 1024px) {
+    .header {
+        padding: 20px;
+        gap: 20px;
+
+        #subtitle {
+            font-size: 70px;
+        }
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto 1fr;
+        gap: 20px;
+        padding: 50px;
+
+        .nav {
+            grid-column: 1 / -1;
+            grid-row: 1;
+            padding: 10px;
+            a {
+                font-size: 28px;
+                margin: 0 clamp(50px, 75px, 100px);
+            }
+        }
+
+        .logs {
+            grid-column: 1;
+            grid-row: 2;
+            position: static;
+            top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .image {
+                order: -1;
+                margin: 0;
+
+                #logImage {
+                    width: 100%;
+                    max-width: 400px;
+                }
+            }
+
+            #logList {
+                flex-direction: column;
+                
+                li {
+                    margin-right: 0;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        .main {
+            grid-column: 2;
+            grid-row: 2;
+            margin: 0;
+
+            #entryImage {
+                width: clamp(150px, 250px, 350px);
+            }
+
+            p {
+                padding: 10px;
+                text-align: left;
+                font-size: $font-medium;
+            }
+        }
+    }
+}
